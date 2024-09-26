@@ -33,6 +33,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Run terraform fmt
+        working-directory: ./terraform
         run: terraform fmt
       - name: Run terraform fmt check
         run: terraform fmt -check
@@ -58,6 +59,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
+        working-directory: ./terraform
         run: terraform init
 
       - name: Terraform Plan
@@ -85,6 +87,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
+        working-directory: ./terraform
         run: terraform init
 
       - name: Terraform Apply
