@@ -60,7 +60,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./terraform
-        run: terraform init
+        run: terraform init -backend-config=backend-config.tfvars
 
       - name: Terraform Plan
         working-directory: ./terraform
@@ -89,7 +89,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./terraform
-        run: terraform init
+        run: terraform init -backend-config=backend-config.tfvars
 
       - name: Terraform Apply
         working-directory: ./terraform
