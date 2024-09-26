@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is learning Terraform and GitHub Actions 🚀
+run-name: ${{ github.actor }} is learning Terraform and GitHub Actions with RS School 🚀
 on:
   push:
     branches:
@@ -30,7 +30,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::222634386594:role/GithubActionsRole
-          #role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Run terraform fmt
@@ -56,7 +55,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::222634386594:role/GithubActionsRole
-          #role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
@@ -84,7 +82,6 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::222634386594:role/GithubActionsRole
-          #role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
