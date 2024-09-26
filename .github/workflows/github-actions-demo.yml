@@ -63,6 +63,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
+        working-directory: ./terraform
         run: terraform plan
 
   # Job 3: terraform-apply
@@ -91,4 +92,5 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
+        working-directory: ./terraform
         run: terraform apply -auto-approve
