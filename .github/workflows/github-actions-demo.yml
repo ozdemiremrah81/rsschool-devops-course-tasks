@@ -71,7 +71,7 @@ jobs:
     name: Terraform Apply
     runs-on: ubuntu-latest
     needs: terraform-plan
-    if: github.ref == 'refs/heads/main'  # Only allow apply on main branch
+    #if: github.ref == 'refs/heads/main'  # Only allow apply on main branch
 
     steps:
       - name: Checkout code
