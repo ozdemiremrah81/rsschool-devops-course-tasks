@@ -10,18 +10,18 @@ resource "aws_iam_role" "GithubActionsRole2" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Effect = "Allow"
         #Sid    = ""
-        Principal: {
-                Federated: "arn:aws:iam::222634386594:oidc-provider/token.actions.githubusercontent.com"
+        Principal = {
+          Federated = "arn:aws:iam::222634386594:oidc-provider/token.actions.githubusercontent.com"
         }
-        Condition: {
-                StringEquals: {
-                    "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-                },
-                StringLike: {
-                    "token.actions.githubusercontent.com:sub": "repo:ozdemiremrah81/*"
-                }
-            },
+        Condition = {
+          StringEquals = {
+            "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
+          }
+          StringLike = {
+            "token.actions.githubusercontent.com:sub" = "repo:ozdemiremrah81/*"
+          }
+        }
+      }
     ]
   })
-
 }
