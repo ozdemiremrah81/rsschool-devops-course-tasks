@@ -1,10 +1,4 @@
-data "aws_iam_role" "existing_role" {
-  name = "GithubActionsRole2"
-}
-
 resource "aws_iam_role" "GithubActionsRole2" {
-  count = length(data.aws_iam_role.existing_role.id) == 0 ? 1 : 0
-
   name = "GithubActionsRole2"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
