@@ -1,6 +1,6 @@
 # Bastion Host EC2 Instance
 resource "aws_instance" "bastion_host" {
-  ami           = "ami-0a91cd140a1fc148a"  # Amazon Linux 2 AMI, change based on region
+  ami           = "ami-097c5c21a18dc59ea"  # Amazon Linux 2 AMI, change based on region
   instance_type = "t3.micro"               # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # Launch in a public subnet
 
@@ -19,7 +19,7 @@ resource "aws_instance" "bastion_host" {
 
 # Private Instance 1 in private subnet
 resource "aws_instance" "private_instance1" {
-  ami           = "ami-0a91cd140a1fc148a"  # Amazon Linux 2 AMI, change based on region
+  ami           = "ami-097c5c21a18dc59ea"  # Amazon Linux 2 AMI, change based on region
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.app1_privatesubnet1.id  # Private subnet 1
 
