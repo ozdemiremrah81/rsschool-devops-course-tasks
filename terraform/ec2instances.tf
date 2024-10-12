@@ -23,7 +23,7 @@ resource "aws_instance" "private_instance1" {
   instance_type = "t3.micro"
   subnet_id     = aws_subnet.app1_privatesubnet1.id  # Private subnet 1
 
-  key_name      = "app1_natgw_keypai"  # Use your key pair for SSH (optional)
+  key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
 
   # Attach the private Security Group
   vpc_security_group_ids = [aws_security_group.private_sg.id]
