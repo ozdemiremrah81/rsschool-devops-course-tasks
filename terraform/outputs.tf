@@ -5,7 +5,3 @@ output "bastion_public_ip" {
 output "private_instance1_private_ip" {
   value = aws_instance.private_instance1.private_ip
 }
-
-output "private_instance2_private_ip" {
-  value = aws_instance.private_instance2.private_ip
-}
