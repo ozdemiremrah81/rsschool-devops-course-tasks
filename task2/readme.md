@@ -9,9 +9,9 @@ You can easily use this setup to create or remove resources on your AWS environm
 
 - `.github/workflows/`: This folder contains YAML files defining Github Actions (gha) pipelines.
 
-- `screenshots`: This folder contains some screenshots to provide details about the completed parts of the task.
+- `taskx`: For each task in the course, there will be specific folder to provide the details of the task.
 
-- `taskx`: For each task in the course, there will be specific folder to provide the documentation of the task.
+- `taskx\screenshots`: This folder contains some screenshots to provide details about the completed parts of the task.
 
 - `terraform` This folder contains all terraform files (.tf) which actually creates configured resources via gha pipeline.
 
