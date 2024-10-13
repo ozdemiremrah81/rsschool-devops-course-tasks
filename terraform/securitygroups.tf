@@ -4,12 +4,21 @@ resource "aws_security_group" "bastion_sg" {
   description = "Allow SSH from specific IPs"
   vpc_id      = aws_vpc.app1_vpc.id
 
+ # SSH Ingress Rule
   ingress {
     description = "SSH access"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = [var.AllowedIP]
+  }
+ # ICMP (Ping) Ingress Rule
+  ingress {
+    description = "Allow all ICMP traffic (Ping)"
+    from_port   = -1  # -1 means all types of ICMP messages
+    to_port     = -1  # -1 allows all codes for ICMP
+    protocol    = "icmp"
+    cidr_blocks = ["10.1.0.0/21"]  # Allow from vpc
   }
 
   egress {
