@@ -5,9 +5,52 @@ variable "region" {
   default     = "eu-north-1"
 }
 
-# Define VPC CIDR block as a variable
+# Define VPC and Subnets CIDR block as a variable
 variable "vpc_cidr_block" {
   description = "The CIDR block for the VPC"
   type        = string
-  default     = "10.1.0.0/16"
+  default     = "10.1.0.0/21"
+}
+
+variable "private_subnet1_cidr" {
+  description = "The CIDR block for private subnet1"
+  type        = string
+  default     = "10.1.1.0/24"
+}
+
+variable "private_subnet2_cidr" {
+  description = "The CIDR block for private subnet2"
+  type        = string
+  default     = "10.1.2.0/24"
+}
+
+variable "public_subnet1_cidr" {
+  description = "The CIDR block for public subnet1"
+  type        = string
+  default     = "10.1.6.0/24"
+}
+
+variable "public_subnet2_cidr" {
+  description = "The CIDR block for public subnet2"
+  type        = string
+  default     = "10.1.7.0/24"
+}
+
+#Availability zones
+variable "AZ1a" {
+  description = "The availabilityzone1"
+  type        = string
+  default     = "eu-north-1a"
+}
+
+variable "AZ1b" {
+  description = "The availabilityzone2"
+  type        = string
+  default     = "eu-north-1b"
+}
+
+variable "AllowedIP" {
+  description = "Allowed IP for connecting to the bastion host"
+  type        = string
+  default     = "88.233.152.199/32" # Replace with your IP range (office/home IP)
 }
