@@ -47,7 +47,7 @@ You can easily use this setup to create or remove resources on your AWS environm
 - `region` amazon region. (eu-north-1)
 - `vpc_cidr_block` IP block that you want to create in CIDR notation. (10.1.0.0/21)
 - `public and private subnets` Please define required subnets according to the vpc cidr block. Current blocks are
-- 
+  
   Private Subnet1: 10.1.1.0/24
 
   Private Subnet2: 10.1.2.0/24
