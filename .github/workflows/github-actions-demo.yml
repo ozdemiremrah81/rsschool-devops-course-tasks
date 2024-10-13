@@ -63,8 +63,8 @@ jobs:
         working-directory: ./terraform
         run: terraform init 
 
-      - name: Terraform Unlock
-        run: terraform force-unlock 5e1cf5f0-4ae4-b9a0-7791-009c78a68497
+      #- name: Terraform Unlock
+      #  run: terraform force-unlock 5e1cf5f0-4ae4-b9a0-7791-009c78a68497
       - name: Terraform Plan
         working-directory: ./terraform
         run: terraform plan
