@@ -95,6 +95,6 @@ jobs:
         run: terraform init 
         #-backend-config=backend-config.tfvars
 
-      - name: Terraform destroy
+      - name: Terraform apply
         working-directory: ./terraform
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve
