@@ -46,8 +46,10 @@ You can easily use this setup to create or remove resources on your AWS environm
 
 - `region` amazon region. (eu-north-1)
 - `vpc_cidr_block` IP block that you want to create in CIDR notation. (10.1.0.0/21)
+- `public and private subnets` Please define required subnets according to thi vpc cidr block.
+- `AllowedIP` Only this public IP/range will allowed to connect bastion host. Replace with your IP range (office/home IP)
 
-### Steps completed:
+### Steps completed: (Initial setup to connect AWS infra in previous task)
 
 AWS account created, additional (non root) account created
 
@@ -85,4 +87,3 @@ Variables and s3 backend declared in seperate files. (variables.tf and backend.t
 In gha pipeline, i added workflow_dispatch under the trigger section, in-order to run the pipeline manually when needed.
 
 Since .tf files is not under the root directory, I added "working-directory: ./terraform" to jobs in gha pipeline.
-

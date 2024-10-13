@@ -5,7 +5,7 @@ variable "region" {
   default     = "eu-north-1"
 }
 
-# Define VPC and Susnets CIDR block as a variable
+# Define VPC and Subnets CIDR block as a variable
 variable "vpc_cidr_block" {
   description = "The CIDR block for the VPC"
   type        = string
@@ -37,7 +37,6 @@ variable "public_subnet2_cidr" {
 }
 
 #Availability zones
-
 variable "AZ1a" {
   description = "The availabilityzone1"
   type        = string
