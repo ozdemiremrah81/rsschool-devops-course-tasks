@@ -5,6 +5,9 @@ This repository contains the terraform infrastructure as code configurations cre
 
 You can easily use this setup to create or remove resources on your AWS environment for testing purposes.
 
+Latest gha run for succesfully creating whole infrastructure with 18 resources:
+https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/actions/runs/11316538075
+
 ### Directory & File information
 
 - `.github/workflows/`: This folder contains YAML files defining Github Actions (gha) pipelines.
