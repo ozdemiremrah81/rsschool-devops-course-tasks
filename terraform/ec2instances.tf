@@ -5,7 +5,7 @@ resource "aws_instance" "bastion_host" {
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # Launch in a public subnet
 
   # Use your key pair for SSH access
-  key_name      = "aws_key_pair.k3s_key_pair.k3s-key"  # Use your key pair for SSH (optional)
+  key_name      = "aws_key_pair.k3s-key"  # Use your key pair for SSH (optional)
 
   # Attach the public Security Group
   vpc_security_group_ids = [aws_security_group.bastion_sg.id]
@@ -23,7 +23,7 @@ resource "aws_instance" "k3s_instance1" {
   instance_type = var.instance_type              # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet2.id  # Public subnet2
 
-  key_name      = "aws_key_pair.k3s_key_pair.k3s-key"  # Use your key pair for SSH (optional)
+  key_name      = "aws_key_pair.k3s-key"  # Use your key pair for SSH (optional)
 
   # Attach the private Security Group
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]

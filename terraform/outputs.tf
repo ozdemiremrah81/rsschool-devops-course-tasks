@@ -10,7 +10,7 @@ output "k3s_instance1_public_ip" {
 
 output "k3s_ssh_private_key" {
   description = "Private key for SSH access to the k3s instance"
-  value       = tls_private_key.k3s_key.private_key_pem
+  value       =  tls_private_key.k3s_key.private_key_pem
   sensitive   = true
 }
 
