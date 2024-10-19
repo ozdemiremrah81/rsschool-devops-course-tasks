@@ -18,7 +18,7 @@ resource "aws_instance" "bastion_host" {
 }
 
 # K3S Instance 1 in public subnet
-resource "aws_instance" "k3s_instance" {
+resource "aws_instance" "k3s_instance1" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type              # Choose instance type
   subnet_id     = aws_subnet.app1_publicsubnet2.id  # Public subnet2
@@ -62,5 +62,5 @@ output "private_key" {
 
 # Output the EC2 instance public IP
 output "instance_ip" {
-  value = aws_instance.k3s.public_ip
+  value = aws_instance.k3s_instance1.public_ip
 }
