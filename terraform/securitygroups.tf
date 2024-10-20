@@ -42,6 +42,13 @@ resource "aws_security_group" "k3s_sg" {
     protocol    = "-1"
     security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
   }
+   ingress {
+    description = "Allow all  traffic (from vpc)"
+    from_port   = 0  # -1 means all types of ICMP messages
+    to_port     = 0  # -1 allows all codes for ICMP
+    protocol    = "tcp"
+    cidr_blocks = ["10.1.0.0/21"]  # Allow from vpc
+  }
   egress {
     from_port   = 0
     to_port     = 0
