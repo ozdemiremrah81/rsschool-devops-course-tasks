@@ -1,6 +1,6 @@
 
 # The RS School - AWS DevOps Course
-## Task2 Documentation
+## Task3 Documentation
 
 This repository contains the terraform infrastructure as code configurations created for Task 3 of The RS School - AWS DevOps [Course](https://github.com/rolling-scopes-school/tasks/blob/master/devops/modules/2_cluster-configuration/task_3.md)
 
@@ -141,3 +141,6 @@ kubectl label node 10.1.2.246 node-role.kubernetes.io/worker=worker
 ## Deploy sample app:
  kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
 
+
+![Screnshot for nodes](https://example.com/path/to/screenshot.png)
+![Sample app running on worker node (agent)](https://example.com/path/to/screenshot.png)
