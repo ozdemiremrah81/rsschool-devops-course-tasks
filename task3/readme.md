@@ -141,6 +141,8 @@ kubectl label node 10.1.2.246 node-role.kubernetes.io/worker=worker
 ## Deploy sample app:
  kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
 
-
+## Screnshot for nodes
 ![Screnshot for nodes](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task3/task3/screenshots/nodes.png)
+
+## Sample app running on worker node (agent)
 ![Sample app running on worker node (agent)](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task3/task3/screenshots/app_running_on_agent_node.png)
