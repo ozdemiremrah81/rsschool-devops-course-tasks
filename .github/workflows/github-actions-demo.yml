@@ -104,7 +104,7 @@ jobs:
         if: success()
         run: |
           mkdir -p keys
-          echo "${{ steps.apply.outputs.private_key }}" > keys/k3s-key.pem
+          echo "${{ steps.apply.outputs.k3s_ssh_private_key }}" > keys/k3s-key.pem
           chmod 600 keys/k3s-key.pem
         shell: bash
   
