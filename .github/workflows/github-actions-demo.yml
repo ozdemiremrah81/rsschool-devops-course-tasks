@@ -96,5 +96,20 @@ jobs:
         #-backend-config=backend-config.tfvars
 
       - name: Terraform apply
+        id: apply
         working-directory: ./terraform
         run: terraform apply -auto-approve
+
+      - name: Save private key as artifact
+        if: success()
+        run: |
+          mkdir -p keys
+          echo "${{ steps.apply.outputs.private_key }}" > keys/k3s-key.pem
+          chmod 600 keys/k3s-key.pem
+        shell: bash
+  
+      - name: Upload private key artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ssh-key
+          path: keys/k3s-key.pem
