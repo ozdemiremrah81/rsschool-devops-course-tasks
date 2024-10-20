@@ -55,6 +55,12 @@ resource "aws_security_group" "k3s_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]  # HTTP access for services (optional)
   }
+    ingress {
+    from_port   = 30080
+    to_port     = 30080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # HTTP access for services (optional)
+  }
   ingress {
     from_port   = 443
     to_port     = 443
