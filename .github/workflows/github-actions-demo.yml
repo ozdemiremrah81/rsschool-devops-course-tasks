@@ -90,26 +90,26 @@ jobs:
         working-directory: ./terraform
         run: terraform init 
 
-      - name: Terraform Apply
+      - name: Terraform destroy
         id: apply
         working-directory: ./terraform
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
 
       # Capture the Terraform output for the private key and store it as a file
-      - name: Get Terraform output
-        id: output
-        working-directory: ./terraform
-        run: echo "::set-output name=k3s_ssh_private_key::$(terraform output -raw k3s_ssh_private_key)"
+      #- name: Get Terraform output
+        #id: output
+        #working-directory: ./terraform
+        #run: echo "::set-output name=k3s_ssh_private_key::$(terraform output -raw k3s_ssh_private_key)"
 
-      - name: Save private key as artifact
-        if: success()
-        run: |
-          mkdir -p keys
-          echo "${{ steps.output.outputs.k3s_ssh_private_key }}" > keys/k3s-key.pem
-          chmod 600 keys/k3s-key.pem
+      #- name: Save private key as artifact
+        #####i#f: success()##
+        #run: |
+          #mkdir -p keys
+          #echo "$#{{ steps.output.outputs.k3s_ssh_private_key }}" > keys/k3s-key.pem
+          #chmod 600 keys/k3s-key.pem
 
-      - name: Upload private key artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ssh-key
-          path: keys/k3s-key.pem
+      #- name: Upload private key artifact
+        #uses: actions/upload-artifact@v3
+       # with:
+          #name: ssh-key
+          #path: keys/k3s-key.pem
