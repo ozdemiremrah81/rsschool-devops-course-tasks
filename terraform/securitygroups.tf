@@ -40,7 +40,8 @@ resource "aws_security_group" "k3s_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
+    cidr_blocks = [var.AllowedIP]
+    #security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
   }
   ingress {
     from_port   = 6443
