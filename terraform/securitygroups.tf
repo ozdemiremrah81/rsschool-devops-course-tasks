@@ -29,20 +29,26 @@ resource "aws_security_group" "bastion_sg" {
   }
 }
 
-# Security Group for Private Instances (Private access)
-resource "aws_security_group" "private_sg" {
-  name        = "private-sg"
-  description = "Allow SSH only from Bastion Host"
+# Security Group for k3s Instances 
+resource "aws_security_group" "k3s_sg" {
+  name        = "k3s-sg"
+  description = "Allow access only from Bastion Host"
   vpc_id      = aws_vpc.app1_vpc.id
 
   ingress {
-    description = "Allow SSH from Bastion Host"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    description = "Allow all from Bastion Host"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
   }
-
+   ingress {
+    description = "Allow all  traffic (from vpc)"
+    from_port   = 0  # -1 means all types of ICMP messages
+    to_port     = 0  # -1 allows all codes for ICMP
+    protocol    = "tcp"
+    cidr_blocks = ["10.1.0.0/21"]  # Allow from vpc
+  }
   egress {
     from_port   = 0
     to_port     = 0

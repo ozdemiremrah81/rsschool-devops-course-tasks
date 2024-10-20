@@ -21,11 +21,6 @@ resource "aws_route_table_association" "app1_public_rt_assoc1" {
   route_table_id = aws_route_table.app1_public_rt.id
 }
 
-resource "aws_route_table_association" "app1_public_rt_assoc2" {
-  subnet_id      = aws_subnet.app1_publicsubnet2.id
-  route_table_id = aws_route_table.app1_public_rt.id
-}
-
 resource "aws_route_table_association" "app1_private_rt_assoc1" {
   subnet_id      = aws_subnet.app1_privatesubnet1.id
   route_table_id = aws_route_table.app1_private_rt.id
