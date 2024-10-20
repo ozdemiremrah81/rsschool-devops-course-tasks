@@ -32,40 +32,15 @@ resource "aws_security_group" "bastion_sg" {
 # Security Group for k3s Instances 
 resource "aws_security_group" "k3s_sg" {
   name        = "k3s-sg"
-  description = "Allow SSH only from Bastion Host"
+  description = "Allow access only from Bastion Host"
   vpc_id      = aws_vpc.app1_vpc.id
 
   ingress {
-    description = "Allow SSH from Bastion Host"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [var.AllowedIP]
-    #security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
-  }
-  ingress {
-    from_port   = 6443
-    to_port     = 6443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Kubernetes API access (can be restricted)
-  }
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # HTTP access for services (optional)
-  }
-    ingress {
-    from_port   = 30080
-    to_port     = 30080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # HTTP access for services (optional)
-  }
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # HTTPS access for services (optional)
+    description = "Allow all from Bastion Host"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    security_groups = [aws_security_group.bastion_sg.id]  # Allow access from Bastion SG
   }
   egress {
     from_port   = 0
