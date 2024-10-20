@@ -142,5 +142,5 @@ kubectl label node 10.1.2.246 node-role.kubernetes.io/worker=worker
  kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
 
 
-![Screnshot for nodes](https://example.com/path/to/screenshot.png)
-![Sample app running on worker node (agent)](https://example.com/path/to/screenshot.png)
+![Screnshot for nodes](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task3/task3/screenshots/nodes.png)
+![Sample app running on worker node (agent)](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task3/task3/screenshots/app_running_on_agent_node.png)
