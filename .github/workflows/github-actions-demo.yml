@@ -90,10 +90,10 @@ jobs:
         working-directory: ./terraform
         run: terraform init 
 
-      - name: Terraform apply
+      - name: Terraform destroy 
         id: apply
         working-directory: ./terraform
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
 
       # Capture the Terraform output for the private key and store it as a file
       #- name: Get Terraform output
