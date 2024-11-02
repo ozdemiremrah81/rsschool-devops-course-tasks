@@ -1,4 +1,3 @@
-
 # K3S MasterNode in private subnet1
 resource "aws_instance" "k3s_masternode" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
