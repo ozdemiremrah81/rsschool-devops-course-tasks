@@ -1,16 +1,3 @@
-  # Use your key pair for SSH access
-  key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
-
-  # Attach the public Security Group
-  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
-
-  associate_public_ip_address = true  # Ensure public IP for SSH access
-
-  tags = {
-    Name = "Bastion Host"
-  }
-}
-
 # K3S MasterNode in private subnet1
 resource "aws_instance" "k3s_masternode" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
