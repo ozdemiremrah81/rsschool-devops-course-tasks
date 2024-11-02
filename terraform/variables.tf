@@ -15,7 +15,7 @@ variable "AllowedIP" {
 #AWS EC2 instance type
 variable "instance_type" {
   description = "EC2 instance type for k3s"
-  default     = "t3.micro"
+  default     = "t3.small"
 }
 
 # Define VPC and Subnets CIDR block as a variable
