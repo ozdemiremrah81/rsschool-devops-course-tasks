@@ -5,6 +5,7 @@ resource "aws_instance" "k3s_masternode" {
   subnet_id     = aws_subnet.app1_publicsubnet1.id  # private subnet1
 
   key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
+  associate_public_ip_address = true  # Ensure public IP for SSH access
 
   # Attach the private Security Group
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]
