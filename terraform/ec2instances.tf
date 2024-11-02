@@ -1,9 +1,3 @@
-# Bastion Host EC2 Instance
-resource "aws_instance" "bastion_host" {
-  ami           = "ami-097c5c21a18dc59ea"  # Amazon Linux 2 AMI, change based on region
-  instance_type = var.instance_type              # Choose instance type
-  subnet_id     = aws_subnet.app1_publicsubnet1.id  # Launch in a public subnet
-
   # Use your key pair for SSH access
   key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
 
@@ -21,7 +15,7 @@ resource "aws_instance" "bastion_host" {
 resource "aws_instance" "k3s_masternode" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type              # Choose instance type
-  subnet_id     = aws_subnet.app1_privatesubnet1.id  # private subnet1
+  subnet_id     = aws_subnet.app1_publicsubnet1.id  # private subnet1
 
   key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
 
@@ -60,7 +54,7 @@ resource "aws_instance" "k3s_masternode" {
 resource "aws_instance" "k3s_agent" {
   ami           = "ami-000e50175c5f86214"  # Ubuntu 22.04 north eu
   instance_type = var.instance_type              # Choose instance type
-  subnet_id     = aws_subnet.app1_privatesubnet2.id  # private subnet1
+  subnet_id     = aws_subnet.app1_publicsubnet1.id  # private subnet1
 
   key_name      = "app1_natgw_keypair"  # Use your key pair for SSH (optional)
 
