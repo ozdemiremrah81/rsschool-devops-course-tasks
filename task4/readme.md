@@ -2,9 +2,13 @@
 # The RS School - AWS DevOps Course
 ## Task4 Documentation
 
+- Preparing the environment: Two screenshots as a proof of working on the right kubernetes cluster.
 ![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0kubeconfig.png)
+![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0public_ip.png)
 
 - Helm Installation and Verification (10 points)
+![1-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/1helm%20and%20nginx%20installation%20verification.png)
+![1-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/1helm%20and%20nginx%20installation%20verification2.png)
 
 - Cluster Requirements (10 points)
 
