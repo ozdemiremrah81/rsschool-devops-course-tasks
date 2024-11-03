@@ -1,8 +1,20 @@
 
 # The RS School - AWS DevOps Course
 ## Task4 Documentation
+
+Preparing the environment:
+https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0kubeconfig.png
+
 - Helm Installation and Verification (10 points)
 
+- Cluster Requirements (10 points)
+
+
+- Jenkins Installation (50 points)
+
+- Jenkins Configuration (10 points)
+
+- Verification (10 points)
 
 
 
