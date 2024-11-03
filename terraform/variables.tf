@@ -9,13 +9,13 @@ variable "region" {
 variable "AllowedIP" {
   description = "Allowed IP for connecting to the bastion host"
   type        = string
-  default     = "88.238.64.27/32" # Replace with your IP range (office/home IP)
+  default     = "159.146.57.41/32" # Replace with your IP range (office/home IP)
 }
 
 #AWS EC2 instance type
 variable "instance_type" {
   description = "EC2 instance type for k3s"
-  default     = "t3.micro"
+  default     = "t3.small"
 }
 
 # Define VPC and Subnets CIDR block as a variable
