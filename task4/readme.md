@@ -25,13 +25,14 @@ Jenkins on Seperate Namespace:
 
 
 - Jenkins Configuration (10 points)
+Jenkins configuration is stored on a persistent volume and is not lost when Jenkins' pod is terminated.
 ![4-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/4Jenkins_on_persistantVolume.png)
 ![4-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/4jenkins_on_persistantVolume-2.png)
 
 
 
 - Verification (10 points)
-I redirected a subdomain (j.m365.net.tr) to the jenkins server and created freestyle project.
+I redirected a subdomain (j.m365.net.tr) to the jenkins server and created freestyle project. You can see the output log of successful "Hello World" message at the end.
 ![5-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/5Jenkins_FreeStyle_Project.png)
 
 
