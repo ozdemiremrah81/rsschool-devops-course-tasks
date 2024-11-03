@@ -13,6 +13,7 @@
 
 
 - Cluster Requirements (10 points)
+The cluster has a solution for managing persistent volumes (PV) and persistent volume claims (PVC).
 ![2-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/2ClusterRequirements_pvc_created.png)
 
 
