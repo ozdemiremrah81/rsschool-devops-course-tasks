@@ -2,6 +2,8 @@
 # The RS School - AWS DevOps Course
 ## Task4 Documentation
 
+This part is explaining evaluation criterias for task4. If you need the infra setup details, please check the pages after the screenshots.
+
 - Preparing the environment: Two screenshots as a proof of working on the right kubernetes cluster.
 ![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0kubeconfig.png)
 ![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0public_ip.png)
