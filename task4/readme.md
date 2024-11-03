@@ -6,19 +6,31 @@
 ![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0kubeconfig.png)
 ![Preparing the environment](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/0public_ip.png)
 
+
 - Helm Installation and Verification (10 points)
 ![1-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/1helm%20and%20nginx%20installation%20verification.png)
 ![1-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/1helm%20and%20nginx%20installation%20verification2.png)
 
+
 - Cluster Requirements (10 points)
+![2-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/2ClusterRequirements_pvc_created.png)
 
 
 - Jenkins Installation (50 points)
+![3-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3Jenkins%20Installation.png)
+![3-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3_jenkins_over_internet.png)
+![3-3](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3_jenkins_seperate_namespace.png)
+
 
 - Jenkins Configuration (10 points)
+![4-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/4Jenkins_on_persistantVolume.png)
+![4-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/4jenkins_on_persistantVolume-2.png)
+
+
 
 - Verification (10 points)
-
+I redirected a subdomain (j.m365.net.tr) to the jenkins server and created freestyle project.
+![5-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/5Jenkins_FreeStyle_Project.png)
 
 
 
