@@ -19,6 +19,8 @@
 - Jenkins Installation (50 points)
 ![3-1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3Jenkins%20Installation.png)
 ![3-2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3_jenkins_over_internet.png)
+
+Jenkins on Seperate Namespace:
 ![3-3](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task4/task4/screenshots/3_jenkins_seperate_namespace.png)
 
 
