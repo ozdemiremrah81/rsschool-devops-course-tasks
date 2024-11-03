@@ -1,7 +1,13 @@
 
 # The RS School - AWS DevOps Course
-## Task3 Documentation
+## Task4 Documentation
+- Helm Installation and Verification (10 points)
 
+
+
+
+
+## Steps completed to provide infrastructure for Task4
 This repository contains the terraform infrastructure as code configurations created for Task 3 of The RS School - AWS DevOps [Course](https://github.com/rolling-scopes-school/tasks/blob/master/devops/modules/2_cluster-configuration/task_3.md)
 
 You can easily use this setup to create or remove resources on your AWS environment for testing purposes.
