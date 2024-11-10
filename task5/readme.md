@@ -10,6 +10,8 @@ helm install my-wordpress .\wordpress
 - In screenshot starting with1: You can see before the command there are no pods in the environment.
 In same screenshot after running above command, I have wordpress and mysql pods. Also I listed helm deployment.
 
+![1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task5/task5/screenshots/1-before_and_after.png)
+
 
 - In screenshot starting with2: You can see the wordpress is running on the ip address 51.21.129.190 and port 8080. You can check this setup is achieved via the helm chart's values file which includes following values: 
 
@@ -17,7 +19,12 @@ service:
   type: LoadBalancer
   port: 8080
 
+![2](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task5/task5/screenshots/2-wordpress_withmy_public_ip.png)
+
 - In screenshot starting with3: You can verify that this ip address belongs to my aws ec2 instance running k3s. (Its also deployed via github actions in task4)
+- 
+![3](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task5/task5/screenshots/3-wordpress_withmy_public_ip_2.png)
+
 
 I also created a pipeline for the helm deployment, but the gha action fails.
 
