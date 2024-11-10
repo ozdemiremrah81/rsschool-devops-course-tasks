@@ -126,7 +126,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $K3S_MASTER_IP >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ needs.terraform-apply.outputs.k3s_master_public_ip }} >> ~/.ssh/known_hosts
           scp -i ~/.ssh/id_rsa ubuntu@${{ needs.terraform-apply.outputs.k3s_master_public_ip }}:/etc/rancher/k3s/k3s.yaml k3s.yaml
           sed -i "s/127.0.0.1/${{ needs.terraform-apply.outputs.k3s_master_public_ip }}/" k3s.yaml
           base64 k3s.yaml | tr -d '\n' > kubeconfig_base64.txt 
