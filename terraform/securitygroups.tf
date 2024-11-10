@@ -55,4 +55,12 @@ resource "aws_security_group" "k3s_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]  # Allow all outbound traffic
   }
+  # SSH Ingress Rule
+  ingress {
+    description = "SSH access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.AllowedIP]
+  }
 }
