@@ -16,7 +16,7 @@ spec:
         - name: wordpress
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           env:
             - name: WORDPRESS_DB_HOST
               value: "{{ include "wordpress.fullname" . }}-mysql"

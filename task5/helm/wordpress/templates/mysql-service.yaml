@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "wordpress.fullname" . }}-mysql
+  labels:
+    app: {{ include "wordpress.fullname" . }}-mysql
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    app: {{ include "wordpress.fullname" . }}-mysql

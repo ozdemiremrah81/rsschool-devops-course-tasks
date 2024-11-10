@@ -8,11 +8,11 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 8080
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
   hosts:
     - host: wordpress.local
@@ -20,7 +20,14 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
+serviceAccount:
+  create: true   # Set to true to create a service account, or false if you want to use an existing one.
+  name: ""       # If you want to use a custom service account, specify the name here.
+autoscaling:
+  enabled: false    # Set to true to enable Horizontal Pod Autoscaler
+  minReplicas: 1    # Minimum number of replicas
+  maxReplicas: 2   # Maximum number of replicas
+  targetCPUUtilizationPercentage: 80  # Target CPU utilization percentage
 # WordPress configurations
 wordpressUsername: admin
 wordpressPassword: admin
@@ -41,3 +48,4 @@ mysql:
   persistence:
     enabled: true
     size: 5Gi
+
