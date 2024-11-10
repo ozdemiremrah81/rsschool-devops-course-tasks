@@ -93,7 +93,7 @@ jobs:
       - name: Terraform apply 
         id: apply
         working-directory: ./terraform
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve
 
       # Capture the Terraform output for the private key and store it as a file
       #- name: Get Terraform output
