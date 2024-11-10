@@ -1,9 +1,9 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is learning Terraform and GitHub Actions with RS School 🚀
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - task5
   workflow_dispatch:
 permissions:
   id-token: write # Required for requesting the JWT token
@@ -99,11 +99,11 @@ jobs:
         working-directory: ./terraform
         id: get_output
         run: echo "::set-output name=k3s_master_public_ip::$(terraform output -raw k3s_master_public_ip)"
-        
+
   helm-deploy:
     name: Deploy WordPress using Helm
     runs-on: ubuntu-latest
-    needs: fetch-kubeconfig
+    needs: terraform-apply
 
     steps:
       - name: Checkout code
