@@ -57,9 +57,9 @@ resource "aws_security_group" "k3s_sg" {
   }
   # SSH Ingress Rule
   ingress {
-    description = "SSH access"
-    from_port   = 22
-    to_port     = 22
+    description = "All access"
+    from_port   = 0
+    to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = [var.AllowedIP]
   }
