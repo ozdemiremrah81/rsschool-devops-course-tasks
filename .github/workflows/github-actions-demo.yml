@@ -95,6 +95,11 @@ jobs:
         working-directory: ./terraform
         run: terraform apply -auto-approve
 
+      - name: Get Terraform output
+        working-directory: ./terraform
+        id: get_output
+        run: echo "::set-output name=k3s_master_public_ip::$(terraform output -raw k3s_master_public_ip)"
+
   fetch-kubeconfig:
     name: Fetch Kubeconfig from K3s Master
     runs-on: ubuntu-latest
@@ -109,15 +114,10 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::222634386594:role/GithubActionsRole
           aws-region: ${{ env.AWS_REGION }}
+
       - name: Terraform Init
         working-directory: ./terraform
         run: terraform init
-      - name: Get Terraform output (K3s Master Public IP)
-        id: output
-        working-directory: ./terraform
-        run: |
-          MASTER_IP=$(terraform output -raw k3s_master_public_ip)
-          echo "K3S_MASTER_IP=$MASTER_IP" >> $GITHUB_ENV
 
       - name: SSH into K3s Master and Get Kubeconfig
         env:
@@ -127,9 +127,10 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $K3S_MASTER_IP >> ~/.ssh/known_hosts
-          scp -i ~/.ssh/id_rsa ubuntu@$K3S_MASTER_IP:/etc/rancher/k3s/k3s.yaml k3s.yaml
-          sed -i "s/127.0.0.1/$K3S_MASTER_IP/" k3s.yaml
-          base64 k3s.yaml | tr -d '\n' > kubeconfig_base64.txt     
+          scp -i ~/.ssh/id_rsa ubuntu@${{ needs.terraform-apply.outputs.k3s_master_public_ip }}:/etc/rancher/k3s/k3s.yaml k3s.yaml
+          sed -i "s/127.0.0.1/${{ needs.terraform-apply.outputs.k3s_master_public_ip }}/" k3s.yaml
+          base64 k3s.yaml | tr -d '\n' > kubeconfig_base64.txt 
+
       - name: Install GitHub CLI
         run: sudo apt-get install -y gh
         
