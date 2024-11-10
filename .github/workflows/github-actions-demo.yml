@@ -109,7 +109,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::222634386594:role/GithubActionsRole
           aws-region: ${{ env.AWS_REGION }}
-
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: terraform init
       - name: Get Terraform output (K3s Master Public IP)
         id: output
         working-directory: ./terraform
