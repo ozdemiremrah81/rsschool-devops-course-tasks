@@ -119,6 +119,9 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
+      - name: Install GitHub CLI
+        run: echo "K3S Master IP:" ${{ needs.terraform-apply.outputs.k3s_master_public_ip }}
+        
       - name: SSH into K3s Master and Get Kubeconfig
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
