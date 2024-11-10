@@ -119,9 +119,6 @@ jobs:
         working-directory: ./terraform
         run: terraform init
 
-      - name: Install GitHub CLI
-        run: echo "K3S Master IP:" ${{ needs.terraform-apply.outputs.k3s_master_public_ip }}
-        
       - name: SSH into K3s Master and Get Kubeconfig
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -129,9 +126,9 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ needs.terraform-apply.outputs.k3s_master_public_ip }} >> ~/.ssh/known_hosts
-          scp -i ~/.ssh/id_rsa ubuntu@${{ needs.terraform-apply.outputs.k3s_master_public_ip }}:/etc/rancher/k3s/k3s.yaml k3s.yaml
-          sed -i "s/127.0.0.1/${{ needs.terraform-apply.outputs.k3s_master_public_ip }}/" k3s.yaml
+          ssh-keyscan -H 51.21.129.190 >> ~/.ssh/known_hosts
+          scp -i ~/.ssh/id_rsa ubuntu@51.21.129.190:/etc/rancher/k3s/k3s.yaml k3s.yaml
+          sed -i "s/127.0.0.1/51.21.129.190/" k3s.yaml
           base64 k3s.yaml | tr -d '\n' > kubeconfig_base64.txt 
 
       - name: Install GitHub CLI
