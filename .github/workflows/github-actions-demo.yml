@@ -1,9 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is learning Terraform and GitHub Actions with RS School 🚀
 on:
-  push:
-    branches:
-      - task5
   workflow_dispatch:
 permissions:
   id-token: write # Required for requesting the JWT token
