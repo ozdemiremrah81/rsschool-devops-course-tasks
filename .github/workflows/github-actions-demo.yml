@@ -126,13 +126,7 @@ jobs:
             --cidr ${{ steps.ip.outputs.ipv4 }}/32
       - name: Wait for 30 seconds
         run: sleep 30 
-         
-      # Step 3: Install kubectl
-      - name: Install kubectl
-        run: |
-          curl -LO https://dl.k8s.io/release/v1.23.5/bin/linux/amd64/kubectl
-          chmod +x ./kubectl
-          sudo mv ./kubectl /usr/local/bin/kubectl
+
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
@@ -144,16 +138,12 @@ jobs:
         run: |
           ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
             # Copy K3s kubeconfig from the K3s node to the GitHub runner
-          sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
-          export KUBECONFIG=kubeconfig
+          pwd
+          ls
+          kubectl apply -f ./jenkins-deployment.yaml
           EOF
 
-      # Step 5: Deploy Jenkins using kubectl
-      - name: Deploy Jenkins using kubectl
-        run: |
-          kubectl apply -f kubernetes/jenkins-deployment.yaml
-
-      # Optional Step 6: Verify if the Jenkins deployment is successful
+     # Optional Step 6: Verify if the Jenkins deployment is successful
       - name: Verify Jenkins deployment
         run: |
           kubectl rollout status deployment/jenkins -n default
