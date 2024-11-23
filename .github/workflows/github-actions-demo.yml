@@ -129,8 +129,8 @@ jobs:
         run: |
           ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
             # Copy K3s kubeconfig from the K3s node to the GitHub runner
-            sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
-            export KUBECONFIG=kubeconfig
+          sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
+          export KUBECONFIG=kubeconfig
           EOF
 
       # Step 5: Deploy Jenkins using kubectl
