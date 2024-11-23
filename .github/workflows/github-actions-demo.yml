@@ -119,12 +119,15 @@ jobs:
           curl -LO https://dl.k8s.io/release/v1.23.5/bin/linux/amd64/kubectl
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin/kubectl
-
-      # Step 4: Connect to EC2 instance and configure kubectl to access K3s
-      - name: Configure kubectl to access K3s
+      - name: Set up SSH key
         run: |
-          # Assuming you are using SSH key to access the EC2 instance
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+      # Step 4: Connect to EC2 instance and configure kubectl to access K3s
+      - name: Connect to EC2 Instance
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@EC2_PUBLIC_IP << 'EOF'
             # Copy K3s kubeconfig from the K3s node to the GitHub runner
             sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
             export KUBECONFIG=kubeconfig
