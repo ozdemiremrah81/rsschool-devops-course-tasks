@@ -127,7 +127,7 @@ jobs:
       # Step 4: Connect to EC2 instance and configure kubectl to access K3s
       - name: Connect to EC2 Instance
         run: |
-          ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_PUBLIC_IP }}P << 'EOF'
+          ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
             # Copy K3s kubeconfig from the K3s node to the GitHub runner
             sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
             export KUBECONFIG=kubeconfig
