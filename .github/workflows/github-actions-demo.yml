@@ -124,9 +124,7 @@ jobs:
             --protocol tcp \
             --port 22 \
             --cidr ${{ steps.ip.outputs.ipv4 }}/32
-      - name: Wait for 30 seconds
-        run: sleep 30 
-
+      
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
