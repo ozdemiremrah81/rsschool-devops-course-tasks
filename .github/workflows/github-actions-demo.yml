@@ -96,3 +96,46 @@ jobs:
         working-directory: ./terraform
         id: get_output
         run: echo "::set-output name=k3s_master_public_ip::$(terraform output -raw k3s_master_public_ip)"
+
+  deploy-jenkins:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up AWS CLI to interact with EC2 and configure kubectl
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1  # Update with your region
+
+      # Step 3: Install kubectl
+      - name: Install kubectl
+        run: |
+          curl -LO https://dl.k8s.io/release/v1.23.5/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      # Step 4: Connect to EC2 instance and configure kubectl to access K3s
+      - name: Configure kubectl to access K3s
+        run: |
+          # Assuming you are using SSH key to access the EC2 instance
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            # Copy K3s kubeconfig from the K3s node to the GitHub runner
+            sudo cat /etc/rancher/k3s/k3s.yaml > kubeconfig
+            export KUBECONFIG=kubeconfig
+          EOF
+
+      # Step 5: Deploy Jenkins using kubectl
+      - name: Deploy Jenkins using kubectl
+        run: |
+          kubectl apply -f kubernetes/jenkins-deployment.yaml
+
+      # Optional Step 6: Verify if the Jenkins deployment is successful
+      - name: Verify Jenkins deployment
+        run: |
+          kubectl rollout status deployment/jenkins -n default
