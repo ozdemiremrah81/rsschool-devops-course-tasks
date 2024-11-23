@@ -99,6 +99,8 @@ jobs:
 
   deploy-jenkins:
     runs-on: ubuntu-latest
+    env:
+          AWS_INSTANCE_SG_ID: ${{ secrets.AWS_INSTANCE_SG_ID }}
     needs: terraform-apply
     steps:
       # Step 1: Checkout code from the repository
@@ -112,7 +114,17 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1  # Update with your region
-
+      - name: get runner ip address
+        id: ip
+        uses: haythem/public-ip@v1.2
+      - name: allow_gha_on_aws_sg
+        run: |
+          aws ec2 authorize-security-group-ingress \
+            --group-id $AWS_INSTANCE_SG_ID \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        
       # Step 3: Install kubectl
       - name: Install kubectl
         run: |
@@ -125,6 +137,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
       # Step 4: Connect to EC2 instance and configure kubectl to access K3s
+
       - name: Connect to EC2 Instance
         run: |
           ssh -T -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
