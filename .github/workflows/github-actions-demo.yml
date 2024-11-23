@@ -141,8 +141,3 @@ jobs:
           ls
           kubectl apply -f ./jenkins-deployment.yaml
           EOF
-
-     # Optional Step 6: Verify if the Jenkins deployment is successful
-      - name: Verify Jenkins deployment
-        run: |
-          kubectl rollout status deployment/jenkins -n default
