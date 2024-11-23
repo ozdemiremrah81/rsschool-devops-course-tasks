@@ -1,15 +1,48 @@
+# Client Service
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "emrah-mern.fullname" . }}
+  name: emrah-mern-client
   labels:
-    {{- include "emrah-mern.labels" . | nindent 4 }}
+    app: emrah-mern-client
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.client.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - port: {{ .Values.client.service.port }}
+      targetPort: 3000
   selector:
-    {{- include "emrah-mern.selectorLabels" . | nindent 4 }}
+    app: emrah-mern-client
+
+---
+
+# Server Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: emrah-mern-server
+  labels:
+    app: emrah-mern-server
+spec:
+  type: {{ .Values.server.service.type }}
+  ports:
+    - port: {{ .Values.server.service.port }}
+      targetPort: 5000
+  selector:
+    app: emrah-mern-server
+
+---
+
+# MongoDB Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: emrah-mern-mongo
+  labels:
+    app: emrah-mern-mongo
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.mongo.service.port }}
+      targetPort: {{ .Values.mongo.service.port }}
+  selector:
+    app: emrah-mern-mongo
