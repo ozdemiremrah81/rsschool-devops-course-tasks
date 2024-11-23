@@ -132,9 +132,8 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
       # Step 4: Connect to EC2 instance and configure kubectl to access K3s
       - name: Copy Jenkins Deployment File to EC2
-        uses: actions/checkout@v4
         run: |
-          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./jenkins-deployment.yaml ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ubuntu/
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa /home/runner/work/rsschool-devops-course-tasks/rsschool-devops-course-tasks/jenkins-deployment.yaml ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ubuntu/
 
       - name: Connect to EC2 Instance and deploy
         run: |
