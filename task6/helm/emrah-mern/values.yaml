@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  client:
+    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-client
+    tag: "v1"
+    pullPolicy: IfNotPresent
+  server:
+    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-server
+    tag: "v1"
+    pullPolicy: IfNotPresent
+  mongo:
+    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-mongo
+    tag: "v1"
+    pullPolicy: IfNotPresent
+
+mongo:
+  service:
+    port: 27017
+  dataPath: "/data/db"
+
+client:
+  service:
+    type: LoadBalancer
+    port: 80
+
+server:
+  service:
+    type: LoadBalancer
+    port: 5000
+
+resources: {}
