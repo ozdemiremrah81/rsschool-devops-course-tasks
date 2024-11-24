@@ -27,4 +27,4 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                echo 'Checking out code from GitHub...'
+                echo 'Checking out code from GitHub repo...'
