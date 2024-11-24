@@ -8,7 +8,7 @@ server:
 app:
   image:
     repository:  ozdemiremrah81/emrah-mern-client
-    tag: v1
+    tag: v2
     pullPolicy: IfNotPresent
   port: 3000
 
