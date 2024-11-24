@@ -29,4 +29,21 @@ server:
     type: LoadBalancer
     port: 5000
 
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+
+ingress:
+  enabled: true
+  host: example.com
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+imagePullSecrets:
+  - name: ecr-secret
+
 resources: {}
