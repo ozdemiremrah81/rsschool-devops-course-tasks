@@ -28,3 +28,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo 'Checking out code from GitHub repository...'
+                }
+        }
+    }
+}
