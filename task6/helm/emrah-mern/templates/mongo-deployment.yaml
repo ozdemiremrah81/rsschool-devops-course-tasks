@@ -24,15 +24,3 @@ spec:
       volumes:
       - name: mongo-data
         emptyDir: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: emrah-mern-mongo
-spec:
-  type: ClusterIP
-  ports:
-  - port: {{ .Values.mongo.service.port }}
-    targetPort: {{ .Values.mongo.service.port }}
-  selector:
-    app: emrah-mern-mongo

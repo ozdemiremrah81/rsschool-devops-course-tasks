@@ -32,7 +32,9 @@ server:
 serviceAccount:
   create: true
   automount: true
-  annotations: {}
+  annotations:
+  eks.amazonaws.com/role-arn: arn:aws:iam::222634386594:role/ECRAccessRole
+
 
 ingress:
   enabled: true
@@ -43,7 +45,8 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
+
 imagePullSecrets:
-  - name: ecr-secret
+  name: ecr-secret
 
 resources: {}
