@@ -7,8 +7,8 @@ spec:
     app: {{ .Release.Name }}-server
   ports:
   - protocol: TCP
-    port: 5000
-    targetPort: 5000
+    port: 4600
+    targetPort: 4600
 ---
 apiVersion: v1
 kind: Service

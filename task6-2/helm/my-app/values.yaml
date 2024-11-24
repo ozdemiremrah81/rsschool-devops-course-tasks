@@ -22,3 +22,8 @@ mongo:
     MONGO_INITDB_ROOT_PASSWORD: secret
     MONGO_INITDB_DATABASE: simple-mern
   volume: mongodata
+
+env:
+  REACT_APP_PORT: 3000
+  REACT_APP_API_URL: http://localhost:4600
+  APP_SERVER_PORT: 4600

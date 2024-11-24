@@ -19,10 +19,10 @@ spec:
         image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
         imagePullPolicy: {{ .Values.server.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.server.port }}
+        - containerPort: {{ .Values.env.APP_SERVER_PORT }}
         env:
         - name: APP_SERVER_PORT
-          value: "{{ .Values.server.port }}"
+          value: "{{ .Values.env.APP_SERVER_PORT }}"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,10 +45,10 @@ spec:
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         imagePullPolicy: {{ .Values.app.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.app.port }}
+        - containerPort: {{ .Values.env.REACT_APP_PORT }}
         env:
         - name: REACT_APP_API_URL
-          value: "{{ .Values.app.apiUrl }}"
+          value: "{{ .Values.env.REACT_APP_API_URL }}"
 ---
 apiVersion: apps/v1
 kind: Deployment
