@@ -9,7 +9,7 @@ variable "region" {
 variable "AllowedIP" {
   description = "Allowed IP for connecting to the bastion host"
   type        = string
-  default     = "159.146.57.18/32" # Replace with your IP range (office/home IP)
+  default     = "159.146.57.0/24" # Replace with your IP range (office/home IP)
 }
 
 #AWS EC2 instance type

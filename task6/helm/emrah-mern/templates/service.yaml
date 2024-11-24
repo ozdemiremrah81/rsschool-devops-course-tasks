@@ -1,0 +1,48 @@
+# Client Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: emrah-mern-client
+  labels:
+    app: emrah-mern-client
+spec:
+  type: {{ .Values.client.service.type }}
+  ports:
+    - port: {{ .Values.client.service.port }}
+      targetPort: 3000
+  selector:
+    app: emrah-mern-client
+
+---
+
+# Server Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: emrah-mern-server
+  labels:
+    app: emrah-mern-server
+spec:
+  type: {{ .Values.server.service.type }}
+  ports:
+    - port: {{ .Values.server.service.port }}
+      targetPort: 5000
+  selector:
+    app: emrah-mern-server
+
+---
+
+# MongoDB Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: emrah-mern-mongo
+  labels:
+    app: emrah-mern-mongo
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.mongo.service.port }}
+      targetPort: {{ .Values.mongo.service.port }}
+  selector:
+    app: emrah-mern-mongo

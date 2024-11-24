@@ -1,0 +1,5 @@
+apiVersion: v2
+name: emrah-mern
+description: A Helm chart for deploying a MERN stack
+version: 0.1.0
+appVersion: "1.0.0"

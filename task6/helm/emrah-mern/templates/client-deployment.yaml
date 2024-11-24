@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emrah-mern-client
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: emrah-mern-client
+  template:
+    metadata:
+      labels:
+        app: emrah-mern-client
+    spec:
+      containers:
+      - name: client
+        image: "{{ .Values.image.client.repository }}:{{ .Values.image.client.tag }}"
+        imagePullPolicy: {{ .Values.image.client.pullPolicy }}
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emrah-mern-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emrah-mern-mongo
+  template:
+    metadata:
+      labels:
+        app: emrah-mern-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: "{{ .Values.image.mongo.repository }}:{{ .Values.image.mongo.tag }}"
+        imagePullPolicy: {{ .Values.image.mongo.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.mongo.service.port }}
+        volumeMounts:
+        - mountPath: {{ .Values.mongo.dataPath }}
+          name: mongo-data
+      volumes:
+      - name: mongo-data
+        emptyDir: {}

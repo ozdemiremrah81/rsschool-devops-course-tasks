@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-server
+spec:
+  selector:
+    app: {{ .Release.Name }}-server
+  ports:
+  - protocol: TCP
+    port: 4600
+    targetPort: 4600
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-app
+spec:
+  selector:
+    app: {{ .Release.Name }}-app
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80              # External port
+    targetPort: 3000      # Internal container port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  selector:
+    app: {{ .Release.Name }}-mongo
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017

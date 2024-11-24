@@ -1,0 +1,48 @@
+replicaCount: 1
+
+image:
+  client:
+    repository: ozdemiremrah81/emrah-mern-client
+    tag: "v1"
+    pullPolicy: IfNotPresent
+  server:
+    repository: ozdemiremrah81/emrah-mern-server
+    tag: "v1"
+    pullPolicy: IfNotPresent
+  mongo:
+    repository: ozdemiremrah81/emrah-mern-mongo
+    tag: "v1"
+    pullPolicy: IfNotPresent
+
+mongo:
+  service:
+    port: 27017
+  dataPath: "/data/db"
+
+client:
+  service:
+    type: LoadBalancer
+    port: 80
+
+server:
+  service:
+    type: LoadBalancer
+    port: 5000
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations:
+  eks.amazonaws.com/role-arn: arn:aws:iam::222634386594:role/ECRAccessRole
+
+ingress:
+  enabled: true
+  host: eexample.com
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+
+resources: {}

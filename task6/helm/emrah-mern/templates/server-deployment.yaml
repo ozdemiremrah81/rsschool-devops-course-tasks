@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emrah-mern-server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: emrah-mern-server
+  template:
+    metadata:
+      labels:
+        app: emrah-mern-server
+    spec:
+      containers:
+      - name: server
+        image: "{{ .Values.image.server.repository }}:{{ .Values.image.server.tag }}"
+        imagePullPolicy: {{ .Values.image.server.pullPolicy }}
+        ports:
+        - containerPort: 5000

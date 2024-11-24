@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "emrah-mern.fullname" . }}-test-connection"
+  labels:
+    {{- include "emrah-mern.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "emrah-mern.fullname" . }}:{{ .Values.client.service.port }}']
+  restartPolicy: Never
