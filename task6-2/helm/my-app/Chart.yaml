@@ -1,0 +1,4 @@
+apiVersion: v2
+name: my-app
+description: A Helm chart for the MEAN stack application
+version: 0.1.0

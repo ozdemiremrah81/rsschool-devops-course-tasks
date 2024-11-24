@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-server
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-server
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-server
+    spec:
+      containers:
+      - name: server
+        image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
+        imagePullPolicy: {{ .Values.server.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.server.port }}
+        env:
+        - name: APP_SERVER_PORT
+          value: "{{ .Values.server.port }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-app
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-app
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-app
+    spec:
+      containers:
+      - name: app
+        image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
+        imagePullPolicy: {{ .Values.app.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.app.port }}
+        env:
+        - name: REACT_APP_API_URL
+          value: "{{ .Values.app.apiUrl }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mongo
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mongo
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mongo
+    spec:
+      containers:
+      - name: mongo
+        image: "{{ .Values.mongo.image.repository }}:{{ .Values.mongo.image.tag }}"
+        imagePullPolicy: {{ .Values.mongo.image.pullPolicy }}
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "{{ .Values.mongo.environment.MONGO_INITDB_ROOT_USERNAME }}"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "{{ .Values.mongo.environment.MONGO_INITDB_ROOT_PASSWORD }}"
+        - name: MONGO_INITDB_DATABASE
+          value: "{{ .Values.mongo.environment.MONGO_INITDB_DATABASE }}"
+        volumeMounts:
+        - name: mongodata
+          mountPath: /data/db
+      volumes:
+      - name: mongodata
+        emptyDir: {}

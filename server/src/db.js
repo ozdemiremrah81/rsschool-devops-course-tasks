@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const url = `mongodb://mean_db/test?authSource=admin`;
+const url = `mongodb://my-app-mongo/test?authSource=admin`;
 
 mongoose.connect(url, {
     useNewUrlParser: true,

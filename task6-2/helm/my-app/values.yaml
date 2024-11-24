@@ -1,0 +1,24 @@
+server:
+  image:
+    repository: ozdemiremrah81/emrah-mern-server
+    tag: v2
+    pullPolicy: IfNotPresent
+  port: 5000
+
+app:
+  image:
+    repository:  ozdemiremrah81/emrah-mern-client
+    tag: v1
+    pullPolicy: IfNotPresent
+  port: 3000
+
+mongo:
+  image:
+    repository: ozdemiremrah81/emrah-mern-mongo
+    tag: v1
+    pullPolicy: IfNotPresent
+  environment:
+    MONGO_INITDB_ROOT_USERNAME: homestead
+    MONGO_INITDB_ROOT_PASSWORD: secret
+    MONGO_INITDB_DATABASE: simple-mern
+  volume: mongodata
