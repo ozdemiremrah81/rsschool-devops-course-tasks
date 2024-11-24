@@ -43,17 +43,7 @@ pipeline {
     }
 
     stages {
-        stage('Install Docker Compose') {
-            steps {
-                echo 'Installing Docker Compose...'
-                sh '''
-                curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o ${DOCKER_COMPOSE_PATH}
-                chmod +x ${DOCKER_COMPOSE_PATH}
-                ${DOCKER_COMPOSE_PATH} --version
-                '''
-            }
-        }
-
+        
         stage('Checkout Code') {
             steps {
                 echo 'Checking out code from GitHub...'
