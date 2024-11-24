@@ -2,15 +2,15 @@ replicaCount: 1
 
 image:
   client:
-    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-client
+    repository: ozdemiremrah81/emrah-mern-client
     tag: "v1"
     pullPolicy: IfNotPresent
   server:
-    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-server
+    repository: ozdemiremrah81/emrah-mern-server
     tag: "v1"
     pullPolicy: IfNotPresent
   mongo:
-    repository: 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-mongo
+    repository: ozdemiremrah81/emrah-mern-mongo
     tag: "v1"
     pullPolicy: IfNotPresent
 
@@ -35,7 +35,6 @@ serviceAccount:
   annotations:
   eks.amazonaws.com/role-arn: arn:aws:iam::222634386594:role/ECRAccessRole
 
-
 ingress:
   enabled: true
   host: example.com
@@ -45,8 +44,5 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 80
-
-imagePullSecrets:
-  name: ecr-secret
 
 resources: {}

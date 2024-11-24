@@ -18,5 +18,3 @@ spec:
         imagePullPolicy: {{ .Values.image.client.pullPolicy }}
         ports:
         - containerPort: 3000
-      imagePullSecrets:
-        - name: {{ .Values.imagePullSecrets.name }}
