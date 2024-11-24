@@ -32,7 +32,7 @@ You can easily use this setup to create or remove resources on your AWS environm
 ## Steps for task6:
 ### 1.Create Docker Image and Store in ECR
 - Docker image has been created via ./docker-compose.yaml in root directory. I used sample MERN stack application which consists of app (or client), server (or backend) and mongo db. 
-  ![alt text](<Store the Docker image in an AWS ECR repository.png>)
+- ![1](https://github.com/ozdemiremrah81/rsschool-devops-course-tasks/blob/task6/task6/screenshots/1.png)
 - AWS access key created and AWS CLI configured to use it.
 - Login to ECR registry with this command: aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 222634386594.dkr.ecr.eu-north-1.amazonaws.com
 - Tagging the images: docker tag rsschool-devops-course-tasks-server:latest 222634386594.dkr.ecr.eu-north-1.amazonaws.com/emrah-server:v1
