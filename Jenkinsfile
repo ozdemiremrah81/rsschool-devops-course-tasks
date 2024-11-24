@@ -1,5 +1,34 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            label 'emopod'
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: emrahpod
+              labels:
+                pod-template: emrahpod
+            spec:
+              containers:
+                - name: jnlp
+                  image: jenkins/inbound-agent:latest
+                  args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
+                - name: docker
+                  image: docker:20.10.8
+                  command:
+                    - cat
+                  tty: true
+                  volumeMounts:
+                    - mountPath: /var/run/docker.sock
+                      name: docker-sock
+              volumes:
+                - name: docker-sock
+                  hostPath:
+                    path: /var/run/docker.sock
+            """
+        }
+    }
 
     environment {
         DOCKER_REGISTRY = '222634386594.dkr.ecr.eu-north-1.amazonaws.com'
