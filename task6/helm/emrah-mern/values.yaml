@@ -37,7 +37,7 @@ serviceAccount:
 
 ingress:
   enabled: true
-  host: example.com
+  host: eexample.com
 
 autoscaling:
   enabled: false
