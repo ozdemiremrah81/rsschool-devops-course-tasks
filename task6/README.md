@@ -1,3 +1,34 @@
+**please check previous tasks for infrastructure as code details.
+# The RS School - AWS DevOps Course
+## Task6 Documentation
+
+This repository contains the terraform infrastructure as code configurations created for Task 3 of The RS School - AWS DevOps [Course](https://github.com/rolling-scopes-school/tasks/blob/master/devops/modules/2_cluster-configuration/task_3.md)
+
+You can easily use this setup to create or remove resources on your AWS environment for testing purposes.
+
+### Directory & File information
+
+- `.github/workflows/`: This folder contains YAML files defining Github Actions (gha) pipelines.
+
+- `taskx`: For each task in the course, there will be specific folder to provide the details of the task.
+- 
+- `taskx\helm`: Helm charts after task5.
+
+- `taskx\screenshots`: This folder contains some screenshots to provide details about the completed parts of the task.
+
+- `terraform` This folder contains all terraform files (.tf) which actually creates configured resources via gha pipeline.
+
+- `\terraform\backend.tf` The configuration file for terraform backend configuration.
+
+- `\terraform\*.tf` Configuration file for corresponding resource to create them on your AWS Cloud environment.
+
+- `\terraform\main.tf` The main configuration file for core elements like providers.
+
+- `\terraform\outputs.tf` This file contains outputs from your AWS Cloud environment.
+
+- `\terraform\variables.tf` This file contains the variables for the Terraform project. This includes variable types, default values, and descriptions, which allow us to customize the deployment.
+- jenkinsfile : Storing jenkins pipeline configuration and prepared webhooks for auto trigger on Jenkins.
+
 ## Steps for task6:
 ### 1.Create Docker Image and Store in ECR
 - Docker image has been created via ./docker-compose.yaml in root directory. I used sample MERN stack application which consists of app (or client), server (or backend) and mongo db. 
@@ -34,6 +65,10 @@
 - Create a Jenkins pipeline and store it as a Jenkinsfile in your main git repository: The jenkinsfile is under the root folder.
 - Configure the pipeline to be triggered on each push event to the repository: I created a webhook as below. When I push the repository, it is triggering the Jenkins pipeline.
 ![alt text](<Configure the pipeline to be triggered on each push event to the repository.png>)
+
+I created the pipeline as below and as you can see in the jenkinsfile, but it's currently failing.
+
+![alt text](pipe2.png)
 
 
 
