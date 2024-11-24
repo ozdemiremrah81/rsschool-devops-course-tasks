@@ -10,7 +10,7 @@ pipeline {
         HELM_CHART_PATH = 'helm/' // Adjust if your Helm chart is in a different folder
         K8S_NAMESPACE = 'default'
         HELM_RELEASE_NAME = 'mern-stack'
-        DOCKER_COMPOSE_VERSION = '2.2.3' // Adjust the version if needed
+        DOCKER_COMPOSE_PATH = '/tmp/docker-compose'
     }
 
     stages {
@@ -18,17 +18,86 @@ pipeline {
             steps {
                 echo 'Installing Docker Compose...'
                 sh '''
-                curl -L "https://github.com/docker/compose/releases/download/v${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                chmod +x /usr/local/bin/docker-compose
-                docker-compose --version
+                curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o ${DOCKER_COMPOSE_PATH}
+                chmod +x ${DOCKER_COMPOSE_PATH}
+                ${DOCKER_COMPOSE_PATH} --version
                 '''
             }
         }
 
         stage('Checkout Code') {
             steps {
-                echo 'Checking out code from GitHub repository...'
+                echo 'Checking out code from GitHub...'
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Images with Docker Compose') {
+            steps {
+                echo 'Building Docker images with Docker Compose...'
+                sh '''
+                ${DOCKER_COMPOSE_PATH} build
+                '''
+            }
+        }
+
+        stage('Tag MongoDB Image') {
+            steps {
+                echo 'Tagging MongoDB image...'
+                sh '''
+                docker pull mongo:latest
+                docker tag mongo:latest ${MONGO_IMAGE}:latest
+                '''
+            }
+        }
+
+        stage('Push Docker Images to ECR') {
+            steps {
+                echo 'Pushing Docker images to ECR...'
+                withCredentials([aws(credentialsId: 'aws-ecr-credentials', region: 'eu-north-1')]) {
+                    sh '''
+                    aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+                    
+                    # Push client image
+                    docker tag mern-app_client:latest ${CLIENT_IMAGE}:latest
+                    docker push ${CLIENT_IMAGE}:latest
+
+                    # Push server image
+                    docker tag mern-app_server:latest ${SERVER_IMAGE}:latest
+                    docker push ${SERVER_IMAGE}:latest
+
+                    # Push MongoDB image
+                    docker push ${MONGO_IMAGE}:latest
+                    '''
                 }
+            }
+        }
+
+        stage('Deploy to Kubernetes with Helm') {
+            steps {
+                echo 'Deploying application to Kubernetes with Helm...'
+                withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
+                    sh '''
+                    helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
+                      --set client.image.repository=${CLIENT_IMAGE} \
+                      --set client.image.tag=latest \
+                      --set server.image.repository=${SERVER_IMAGE} \
+                      --set server.image.tag=latest \
+                      --set mongo.image.repository=${MONGO_IMAGE} \
+                      --set mongo.image.tag=latest \
+                      --namespace ${K8S_NAMESPACE}
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
