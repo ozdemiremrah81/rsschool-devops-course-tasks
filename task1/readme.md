@@ -18,6 +18,7 @@ adding identity provider for github on aws.
 https://token.actions.githubusercontent.com
 sts.amazonaws.com
 
+testing dependency reviews
 
 
 
